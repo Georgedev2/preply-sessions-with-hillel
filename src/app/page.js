@@ -1,95 +1,71 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from 'next/link';
+import styles from './page.module.css';
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
+export default function Home(prop) {
+  console.log(prop); // { params: {}, searchParams: { step: '2' } }
+  // prop.searchParams.step
+
+  const currentStep = Number(prop.searchParams.step);
+  // const STEP='step';
+  console.log('currentStep', currentStep);
+  switch (Number(prop.searchParams.step)) {
+    case 1:
+      return (
         <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+          jhfsjkjkfs
+          jhfjhkfjkjfk
+          <div className={styles.progress}>
+            <div
+              className={` ${styles.step} ${
+                currentStep <= 1 ? styles.bg : styles.bm
+              }`}
+            ></div>{' '}
+            <div
+              className={` ${styles.step} ${
+                currentStep <= 1 ? styles.bg : styles.bm
+              }`}
+            ></div>{' '}
+            <div
+              className={` ${styles.step} ${
+                currentStep <= 1 ? styles.bg : styles.bm
+              }`}
+            ></div>
+          </div>
+          <p>step {currentStep}/3</p>
+          <h3>step 1</h3>
+          <Link href={`?step=2`}> Go step 2 </Link>
         </div>
-      </div>
+      );
+    case 2:
+      return (
+        <div>
+          <p>step {currentStep}/3</p>
+          <h3>step 2</h3>
+          <Link href={`?step=3`}> Go Step 3 </Link>
+        </div>
+      );
+    case 3:
+      return (
+        <div>
+          <p>step {currentStep}/3</p>
+          <h3>step 3</h3>
+          <Link href={`?step=4`}> Go step 4 </Link>
+        </div>
+      );
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+    default:
+      return (
+        <div>
+          <h3>You Request has been accepted</h3>
+        </div>
+      );
+  }
+  // return <main className={styles.main}></main>;
 }
+
+// <Home isUser='true' age={10}/>
+
+// prop={
+//    isUser:'true',
+//    age:10
+// }
