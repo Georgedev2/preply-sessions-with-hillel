@@ -1,0 +1,9 @@
+
+.inputEl {
+  width: 350px;
+  border: 2px solid teal;
+  border-radius: 5px;
+  height: 35px;
+  outline: none;
+  margin-top: 20px;
+}
