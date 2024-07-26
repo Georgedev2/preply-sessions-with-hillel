@@ -4,13 +4,11 @@ display: flex;
 .step{
 height: 5px ;
 width: 50px;
-
+background-color: teal;
 margin: 3px;
 border-radius: 5px;
 }
-.bg{
-    background-color: teal;
-}
-.bm{
-    background-color: red;
+
+.link{
+    margin: 0px 10px;
 }
