@@ -1,0 +1,23 @@
+
+.container{
+    display: flex;
+    height: 70px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+.links{
+    display: flex;
+list-style: none;
+/* justify-content: space-between; */
+
+align-items:center;
+gap:20px
+
+}
+.links li{
+    padding: 20px;
+}
+.links li:hover{
+    text-decoration: underline;
+}
