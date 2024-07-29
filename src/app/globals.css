@@ -1,6 +1,7 @@
 *{
     padding: 0px;
     margin: 0px;
+    box-sizing: border-box;
 }
 main{
    height: 100vh; 
@@ -23,4 +24,22 @@ margin:auto;
 }
 .one{
     align-self:end;
+}
+
+/* box model */
+.layout{
+    height: 100vh;
+    display: flex;
+}
+.sideBar{
+  width: 300px;
+  border: 1px solid red;
+  height: 100%;
+}
+.main-block{
+    width: 90%;
+    border: 1px solid coral;
+    height: 100%;
+    overflow: scroll;
+    padding: 20px;
 }

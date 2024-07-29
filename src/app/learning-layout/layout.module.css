@@ -21,3 +21,21 @@ gap:20px
 .links li:hover{
     text-decoration: underline;
 }
+
+.con{
+    width: 200px;
+    height: 200px;
+    border: 1px solid red;
+}
+.child{
+    width: 50px;
+    height: 50px;
+    background-color: teal;
+    margin: 4px;
+    
+}
+.one{
+    border-radius: 50%;
+    position: absolute
+    ;background-color: coral;
+}
