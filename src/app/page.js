@@ -11,10 +11,13 @@ const createNSizeArray = (size = 0) => {
 
 export default function Home(prop) {
   const currentStep = Number(prop.searchParams.step);
+  
   let arr = createNSizeArray(currentStep);
-  console.log(arr.map((el)=>{
-  return <div key={el}>{el}</div>
-}))
+  console.log(
+    arr.map((el) => {
+      return <div key={el}>{el}</div>;
+    })
+  );
   switch (currentStep) {
     case 1:
       return (
@@ -26,7 +29,14 @@ export default function Home(prop) {
           </div>
           <p>step {currentStep}/3</p>
           <h3>step 1</h3>
-          <Link href={`?step=1`} className={styles.link}> Go step 1 </Link>   <Link href={`?step=2`} className={styles.link}> Go step 2 </Link>
+          <Link href={`?step=1`} className={styles.link}>
+            {' '}
+            Go step 1{' '}
+          </Link>{' '}
+          <Link href={`?step=2`} className={styles.link}>
+            {' '}
+            Go step 2{' '}
+          </Link>
         </div>
       );
     case 2:

@@ -1,0 +1,50 @@
+.page{
+    width: 90%;
+    margin:50px auto;
+    /* margin: 0px auto; */
+    /* width: 500px;
+    height: 500px;
+    border: 1px solid teal; */
+}
+.b{
+    margin-top: 100px;
+    background-color: cornflowerblue;
+    color: white;
+}
+.box{
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    background-color: coral;
+    position: sticky;
+    bottom:20px;
+}
+.one{
+    background-color: coral;
+z-index: 100;
+    position: absolute;
+
+}
+.two{
+    background-color: red;
+    width: 120px;
+    height: 120px;
+    ;position: absolute;
+
+}
+/* .three{
+    background-color: cornflowerblue;
+    position: absolute;
+} */
+ .cont{
+    width: 50vw;
+    height: 200px;
+    border: 1px solid ;
+ }
+ .child{
+    width: 60%;
+    /* margin: 0px auto; */
+    background-color: chocolate;
+    height: 20px;
+    margin: 5px;
+ }

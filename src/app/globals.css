@@ -38,8 +38,16 @@ margin:auto;
 }
 .main-block{
     width: 90%;
-    border: 1px solid coral;
+    border: 1px solid black;
     height: 100%;
     overflow: scroll;
     padding: 20px;
+}
+.center-me{
+    padding: 20px;
+    border: 1px solid black;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
