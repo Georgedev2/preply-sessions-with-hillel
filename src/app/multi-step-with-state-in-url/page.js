@@ -1,6 +1,7 @@
 'use client';
 import { useSearchParams } from 'next/navigation';
-import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import React, {  useEffect, useState } from 'react';
 const TOTAL_STEP = 3;
 
 const CurrentStep = (props) => {
@@ -16,15 +17,39 @@ const CurrentStep = (props) => {
   );
 };
 
-// https://vercel.com/georgedevs-projects?projectDeleted=unsplash_clone
+
 const MultiFormPage = () => {
   const params = useSearchParams();
+  const router = useRouter();
   const stepParams = params.get('step'); // null or 1,2,3,4
   const step_ = stepParams ? stepParams : 1;
   const parsedStep = parseInt(step_);
+  const [counterStep, setCounterStep] = useState(parsedStep );
 
-  const handleNextStep = () => {};
-  const handlePreviousStep = () => {};
+  const handleNextStep = () => {
+    if (counterStep <= 3) {
+        setCounterStep((oldStep) => {
+       // oldState is the state before the update is made by the state setter
+        return oldStep + 1;
+      });
+   
+    }
+  };
+  useEffect(() => {
+    router.push(`?step=${counterStep}`);
+  }, [counterStep])
+  
+  const handlePreviousStep = () => {
+    if (counterStep >= 1) {
+        setCounterStep((oldStep) => {
+        return oldStep - 1;
+      });
+    }
+  };
+
+  const handleStep = (nextLevel) => {
+    router.push(`?step=${nextLevel}`);
+  };
 
   switch (parsedStep) {
     case 1:
@@ -39,7 +64,15 @@ const MultiFormPage = () => {
             </label>
           </div>
           <div>
-            <button onClick={handleNextStep}>Next</button>{' '}
+            <button
+              type="button"
+              onClick={() => {
+                // handleStep(2);
+                handleNextStep()
+              }}
+            >
+              Next
+            </button>{' '}
             {parsedStep !== 1 ? (
               <button onClick={handlePreviousStep}>Previous</button>
             ) : (
@@ -64,8 +97,24 @@ const MultiFormPage = () => {
             </label>
           </div>
           <div>
-            <button onClick={handleNextStep}>Next</button>{' '}
-            <button onClick={handlePreviousStep}>Previous</button>
+            <button
+              type="button"
+              onClick={() => {
+                // handleStep(3);
+                handleNextStep()
+              }}
+            >
+              Next
+            </button>{' '}
+            <button
+              type="button"
+              onClick={() => {
+                // handleStep(1);
+                handlePreviousStep()
+              }}
+            >
+              Previous
+            </button>
           </div>
         </form>
       );
@@ -88,7 +137,15 @@ const MultiFormPage = () => {
           </div>
           <div>
             <button type="button">Submit</button>{' '}
-            <button onClick={handlePreviousStep}>Previous</button>
+            <button
+              type="button"
+              onClick={() => {
+                // handleStep(2);
+                handlePreviousStep()
+              }}
+            >
+              Previous
+            </button>
           </div>
         </form>
       );
@@ -99,5 +156,3 @@ const MultiFormPage = () => {
 };
 export default MultiFormPage;
 // ~>   /multi-step-with-state-in-url
-
-
