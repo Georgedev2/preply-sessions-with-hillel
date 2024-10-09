@@ -1,9 +1,7 @@
-
-.products{
-    display: flex;
-    gap:10px;
-    flex-wrap: wrap;
-    margin: 100px auto;
-    width: 900px;
-    
+.products {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 100px auto;
+  width: 900px;
 }
