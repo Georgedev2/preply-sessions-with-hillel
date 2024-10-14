@@ -52,9 +52,9 @@ export const products = [
     {
         id:6,
       img: 'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/20fd3517-9957-41c2-8398-47434e21a607/WMNS+NIKE+WAFFLE+DEBUT.png',
-      name: 'Nike Waffle Debut',
-      description: "Women's Shoes",
-      price: 61.97,
+      name: `Men's Shoes`,
+      description: "Nike Dunk Low Retro",
+      price: 120,
       currency: 'usd',
       discount: 16,
       size: ['xl', 'l', 'm', 's', '2xl'],
@@ -62,9 +62,9 @@ export const products = [
     {
         id:7,
       img: 'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/20fd3517-9957-41c2-8398-47434e21a607/WMNS+NIKE+WAFFLE+DEBUT.png',
-      name: 'Nike Waffle Debut',
-      description: "Women's Shoes",
-      price: 61.97,
+      name: 'Nike Pegasus 41 GORE-TEX',
+      description: "Men's Waterproof Road Running Shoes",
+      price: 160,
       currency: 'usd',
       discount: 16,
       size: ['xl'],
@@ -72,12 +72,11 @@ export const products = [
     {
         id:8,
       img: 'https://static.nike.com/a/images/t_PDP_144_v1/f_auto,q_auto:eco/0a90d8d4-7d3d-46b2-a354-0c084cdc3d3e/WMNS+NIKE+WAFFLE+DEBUT.png',
-      name: 'Nike Waffle Debut',
-      description: "Women's Shoes",
-      price: 61.97,
+      name: 'Ja 2',
+      description: "Basketball Shoes",
+      price:120,
       currency: 'usd',
       discount: 16,
       size: ['xl'],
     },
   ];
-  // hkjkjkjds

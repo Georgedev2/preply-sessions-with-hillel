@@ -1,29 +1,61 @@
 'use client';
+import { useEffect, useState } from 'react';
 import { products } from '../data';
 import styles from './product.module.css';
+import Link from 'next/link';
 
-// ~ https://vercel.com/georgedevs-projects?projectDeleted=unsplash_clone
-const page = () => {
+const ProductListPage = () => {
+  const [searchTerm, setSearchTerms] = useState('');
+  const [productFromAPI, setProductFromAPI]= useState([]);
+
+  const getProduct = async () => {
+    const res = await fetch('http://localhost:3000/api/products');
+    const body = await res.json();
+    setProductFromAPI(body.data)
+    console.log('body', body.data);
+  };
+  
+  const handleSearchTerms = (e) => {
+    setSearchTerms(e.target.value);
+  };
+
+  useEffect(() => {
+    getProduct();
+  }, []);
+
+//   const j = products.filter((product, i) => {
+//     if (product.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+//       return product;
+//     }
+//   });
   return (
-    <div className={styles.products}>
-      {products.map((el, i) => {
-        return (
-          <a href={`/products/${el.id}`}  key={i}>
-            <img src={el.img} alt="" width={200} height={100} />
-            <div>
-              <p>{el.name}</p>
-              <p>{el.description}</p>
-              <p>{el.price}</p>
-            </div>
-          </a>
-        );
-      })}
+    <div className={styles.productPage}>
+      <input
+        placeholder="Search for products"
+        onChange={handleSearchTerms}
+        className={styles.search}
+      />
+      <div className={styles.products}>
+        {productFromAPI.map((el, i) => {
+          return (
+            <a href={`/products/${el.id}`} key={i}>
+              <img src={el.img} alt="" width={200} height={100} />
+              <div>
+                <p>{el.name}</p>
+                <p>{el.description}</p>
+                <p>{el.price}</p>
+                {/* <p>{el.id}</p> */}
+              </div>
+            </a>
+          );
+        })}
+      </div>
     </div>
   );
 };
 // https://vercel.com/products/6487484874389ijiod
 
-export default page;
+export default ProductListPage;
 
 // const people = [
 //     'Creola Katherine Johnson: mathematician',

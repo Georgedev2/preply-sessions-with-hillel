@@ -1,7 +1,16 @@
+.productPage {
+  margin: 100px auto;
+  width: 900px;
+}
+.search{
+    margin: auto;
+    width: 80%;
+    margin-bottom: 50px;
+}
 .products {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  margin: 100px auto;
-  width: 900px;
+
+
 }
