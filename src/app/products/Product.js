@@ -10,6 +10,7 @@ import Link from "next/link";
         <p>{productDetail.description}</p>
         <p>{productDetail.price}</p>
       </div>
+      
     </Link>
   );
 };

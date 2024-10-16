@@ -40,11 +40,25 @@ const getProduct = async () => {
   }
 };
 const getProductFromWooCommerce = async () => {
-  const res = await WooCommerce.get('products?per_page=2');
+  try {
+    const res = await WooCommerce.get('products?per_page=10');;
+    if (res.status == 200) {
+     return {
+        products: res.data,
+        error: null,
+      };
+    }
+  } catch (error) {
+    return {
+      products: [],
+      error: {
+        message: error.message,
+      },
+    };
+  }
 
   // console.log('YES')
   // console.log('RES WOO 3', res);
-  return res.data;
 };
 
 const page = async () => {
@@ -53,27 +67,28 @@ const page = async () => {
 
   return (
     <div>
-      
       <section className={styles.productPage}>
         {/* displaying product from woo commerce */}
         <h2>Products from woo commerce</h2>
 
         <div className={styles.products}>
-          {dataFromWooCommerce.map((el, i) => {
-    
-            return (
-              <Product
-                productDetail={{
-                  id: el.id,
-                  price: el.price,
-                  name: el.name,
-                  img: el.images[0].src,
-                  
-                }}
-                key={i}
-              />
-            );
-          })}
+          {dataFromWooCommerce.products.length > 0 ? (
+            dataFromWooCommerce.products.map((el, i) => {
+              return (
+                <Product
+                  productDetail={{
+                    id: el.id,
+                    price: el.price,
+                    name: el.name,
+                    img: el.images[0].src,
+                  }}
+                  key={i}
+                />
+              );
+            })
+          ) : (
+            <div>{dataFromWooCommerce.error.message}, Please try again later</div>
+          )}
         </div>
       </section>
       <section className={styles.productPage}>
@@ -95,10 +110,8 @@ const page = async () => {
           <div>{error.message}</div>
         )}
       </section>
-
- 
     </div>
   );
 };
-
+// Sorry, we couldn't find the page you're looking for.
 export default page;
