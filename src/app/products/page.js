@@ -1,13 +1,6 @@
 import styles from './product.module.css';
 import Product from './Product';
-import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api';
-
-const WooCommerce = new WooCommerceRestApi({
-  url: process.env.DOMAIN, // Your store URL
-  consumerKey: process.env.WOO_COMMERCE_CONSUMER_KEY, // Your consumer key
-  consumerSecret: process.env.WOO_COMMERCE_CONSUMER_SECRET, // Your consumer secret
-  version: 'wc/v3', // WooCommerce WP REST API version
-});
+import wooCommerce from '../components/utils/wooCommerceUtils'
 
 const getProduct = async () => {
   try {
@@ -39,9 +32,10 @@ const getProduct = async () => {
     };
   }
 };
+
 const getProductFromWooCommerce = async () => {
   try {
-    const res = await WooCommerce.get('products?per_page=10');;
+    const res = await wooCommerce.get('products?per_page=10');;
     if (res.status == 200) {
      return {
         products: res.data,
@@ -57,8 +51,6 @@ const getProductFromWooCommerce = async () => {
     };
   }
 
-  // console.log('YES')
-  // console.log('RES WOO 3', res);
 };
 
 const page = async () => {
