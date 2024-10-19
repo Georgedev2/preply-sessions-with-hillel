@@ -2,6 +2,9 @@ import styles from './product.module.css';
 import Product from './Product';
 import wooCommerce from '../components/utils/wooCommerceUtils'
 
+
+
+
 const getProduct = async () => {
   try {
     const res = await fetch('http://localhost:3000/api/products');
@@ -53,7 +56,7 @@ const getProductFromWooCommerce = async () => {
 
 };
 
-const page = async () => {
+const page = async (props) => {
   const { products, error } = await getProduct();
   const dataFromWooCommerce = await getProductFromWooCommerce();
 

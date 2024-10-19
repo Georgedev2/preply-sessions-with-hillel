@@ -1,9 +1,12 @@
 'use client';
 
-const ProductVariation = ({ variation }) => {
+const ProductVariation = ({ variation, getItem }) => {
   return variation.map((item, i) => (
     <button
       key={i}
+      onClick={()=>{
+        getItem (item)
+      }}
       style={{ marginRight: '5px' }}
     >
       {item}
