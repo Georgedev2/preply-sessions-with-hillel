@@ -75,7 +75,7 @@ const ProductDetailPage = async (props) => {
             <p>{product.name}</p>
             <p>{product.description}</p>
           </div>
-          <SubscriptionTerm variation={variation} price={product.price} />
+          <SubscriptionTerm variation={variation[0]} price={product.price} />
           {product.images.map((image) => {
             return (
               <img key={image.id} src={image.src} width={80} height={80} />
