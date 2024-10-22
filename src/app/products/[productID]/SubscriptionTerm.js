@@ -1,6 +1,4 @@
-'use client';
 import React, { useState } from 'react';
-import ProductVariation from '../ProductVariation';
 
 const SubscriptionTerm = (props) => {
   const { variation, price } = props;
