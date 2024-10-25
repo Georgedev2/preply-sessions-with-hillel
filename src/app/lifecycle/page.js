@@ -20,7 +20,7 @@ const Page = () => {
   const [x, setX] = useState('');
 
   useEffect(() => {
-    console.log(`run: ${count}`);
+    // console.log(`run: ${count}`);
 
   },[count, x]);
 

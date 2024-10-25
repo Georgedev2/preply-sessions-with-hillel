@@ -9,7 +9,7 @@ const SignupPage = () => {
   const [formData, setFormData] = useState({ username: '', password: '' }); // [{username:'',password:''}, ()=>{}]
   const submitForm = () => {
     const data = { username: username, password: password };
-    console.log('data', data);
+    // console.log('data', data);
   };
   console.log('formdata',formData)
   return (
