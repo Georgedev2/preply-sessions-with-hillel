@@ -53,34 +53,45 @@ const getProductById = async (productId) => {
 const ProductDetailPage = async (props) => {
   const { params } = props;
   const m = params.pageParams[0].split('-');
-  const productId = m[m.length - 1]
+  const productId = m[m.length - 1];
   //  const productId = '10614'
   const secondParams = params.pageParams[1];
   const { product, error } = await getProductById(productId);
-  const { productVariations}= await wooProductVariations(productId); ////
+  const { productVariations } = await wooProductVariations(productId); ////
 
+  const XX = async () => {
+    console.log('VVV--', `products/${productId}/variations/${secondParams}`);
+    const res = await wooCommerce.get(
+      `products/${productId}/variations/${secondParams}`
+    );
+    // console.log('RES', res);
+    console.log(res.data)
+  };
+  XX();
+  console.log('params ', params);
   const attributes = product
     ? product.attributes.map((attribute) => {
-       // attribute could either be color or subscription
+        // attribute could either be color or subscription
         return attribute.options;
       })
     : [];
-    console.log('paramsBB',params)// paramsBB { productID: [ 'microsoft-xbox-series-x-11601' ] }
-// console.log('productVariationsBBB',productVariations)
-// console.log('product default_attributes',product. default_attributes)
+  // console.log('paramsBB', params); // paramsBB { productID: [ 'microsoft-xbox-series-x-11601' ] }
+  // console.log('productVariationsBBB',productVariations)
+  // console.log('product default_attributes',product. default_attributes)
   return (
     <div>
       {product ? (
         <>
           <ProductDetail
             product_={{
+              productID: product.id,
               name: product.name,
               description: product.description,
               image: product.images[0].src,
               price: product.price,
               attributes: attributes,
             }}
-            productVariations={ productVariations}
+            productVariations={productVariations}
           />
           <div>
             {product.images.map((image) => {
