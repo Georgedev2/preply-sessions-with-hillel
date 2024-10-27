@@ -35,9 +35,11 @@ const getProduct = async () => {
 };
 
 const getProductFromWooCommerce = async () => {
+  // console.log('RUN')
   try {
     const res = await wooCommerce.get('products?per_page=15');
     // woo commerce by default throws error if the status is not 200
+    // console.log('res', res)
     if (res.status == 200) {
       return {
         products: res.data,
@@ -45,6 +47,7 @@ const getProductFromWooCommerce = async () => {
       };
     }
   } catch (error) {
+    // console.log('error', error)
     return {
       products: [],
       error: {
@@ -63,7 +66,7 @@ const productListingPage = async (props) => {
     }
     return '';
   };
-
+// console.log('products ',products[0].default_attributes)
   return (
     <div>
       <section className={styles.productPage}>

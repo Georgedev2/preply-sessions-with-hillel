@@ -1,9 +1,22 @@
 'use client';
 import Image from 'next/image';
+// import { useRouter } from 'next/router';
+import { usePathname, useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 const ProductDetail = ({ product_, productVariations }) => {
   const [product, setProduct] = useState(product_);
+  const router= useRouter()
+  const pathname=usePathname()
+  
+//   const createProductURL = (variationInput) => {
+//     if (variationInput) {
+//       return `/${variationInput.replaceAll(' ', '-')}`.toLowerCase();
+//     }
+//     return '';
+//   };
+console.log('pathname',pathname)
+  console.log(' productVariations', productVariations)
   return (
     <div>
       <Image src={product.image} alt="" width={200} height={100} />
@@ -51,6 +64,9 @@ const ProductDetail = ({ product_, productVariations }) => {
                         ...prevProduct,
                         image: productVariation.image,
                       }));
+                      console.log('productVariation.id', productVariation.id )
+                      console.log('bbb',`/${productVariation.id}`)
+                      router.push(`${pathname}/${productVariation.id}` )
                     }
                   });
                 });

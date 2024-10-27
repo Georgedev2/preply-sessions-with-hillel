@@ -52,18 +52,22 @@ const getProductById = async (productId) => {
 
 const ProductDetailPage = async (props) => {
   const { params } = props;
-  const m = params.productID.split('-');
-  const productId = m[m.length - 1];
+  const m = params.pageParams[0].split('-');
+  const productId = m[m.length - 1]
+  //  const productId = '10614'
+  const secondParams = params.pageParams[1];
   const { product, error } = await getProductById(productId);
   const { productVariations}= await wooProductVariations(productId); ////
 
   const attributes = product
     ? product.attributes.map((attribute) => {
+       // attribute could either be color or subscription
         return attribute.options;
       })
-    : []; // attribute could either be color or subscription
+    : [];
+    console.log('paramsBB',params)// paramsBB { productID: [ 'microsoft-xbox-series-x-11601' ] }
 // console.log('productVariationsBBB',productVariations)
-// console.log('productId',productId)
+// console.log('product default_attributes',product. default_attributes)
   return (
     <div>
       {product ? (
@@ -98,3 +102,14 @@ const ProductDetailPage = async (props) => {
 };
 
 export default ProductDetailPage;
+
+/* 
+ [
+  { id: 5, name: 'Select a subscription term', option: '12' },
+  {
+    id: 22,
+    name: 'Select a color you love',
+    option: 'xbox-series-x-carbon-black'
+  }
+]
+*/
