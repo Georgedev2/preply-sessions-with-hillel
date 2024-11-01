@@ -107,7 +107,7 @@ const MultiFormPage = () => {
               type="button"
               onClick={() => {
                 // handleStep(2);
-                console.log('formData', formData);
+                // console.log('formData', formData);
                 sendFormData();
                 // handleNextStep();
               }}

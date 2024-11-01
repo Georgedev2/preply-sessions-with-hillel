@@ -1,23 +1,24 @@
 import { NextResponse } from 'next/server';
 import { connectToDB } from '../dbConfig';
 import mongoose from 'mongoose';
-import { type } from 'os';
+import bcrypt from 'bcrypt';
+
 const { Schema } = mongoose;
 connectToDB();
 
 const userSchema = new Schema({
   email: String, // String is shorthand for {type: String}
   password: String,
-  body: String,
   createOn: { type: Date, default: Date.now() },
   isEmailVerify: Boolean,
 });
-const User = mongoose.model.users || mongoose.model('user', userSchema);
+const User = mongoose.models.user || mongoose.model('user', userSchema);
 
 export const POST = async (req, res) => {
+    console.log('mongoose.model',mongoose.models)// mongoose.model { user: Model { user },post:Model {post} }
   try {
     const data = await req.json();
-    const { username, password } = data;
+    const { username, password } = data || {};
     if (username !== '' && password.length < 2) {
       return NextResponse.json(
         {
@@ -30,9 +31,26 @@ export const POST = async (req, res) => {
         { status: 400 }
       );
     }
+    const match = await User.findOne({
+      email: username,
+    });
+    console.log('match', match);
+    if (match) {
+      return NextResponse.json(
+        {
+          error: {
+            hasError: true,
+            message: 'user already exist',
+          },
+        },
+        { status: 400 }
+      );
+    }
+    const newPassword = await bcrypt.hash(data.password, 10);
+
     const user = new User({
-      email: data.username,
-      password: data.password,
+      email: username,
+      password: newPassword,
       isEmailVerify: false,
     });
     const u = await user.save();
@@ -55,3 +73,8 @@ export const POST = async (req, res) => {
   }
 };
 // POST http://localhost:3000/api/signup {username, password}
+
+/* 
+OverwriteModelError: Cannot overwrite `user` model once compiled.
+    at Mongoose.model
+*/
