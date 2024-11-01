@@ -54,21 +54,26 @@ const ProductDetailPage = async (props) => {
   const { params } = props;
   const m = params.pageParams[0].split('-');
   const productId = m[m.length - 1];
-  //  const productId = '10614'
   const secondParams = params.pageParams[1];
   const { product, error } = await getProductById(productId);
   const { productVariations } = await wooProductVariations(productId); ////
+  
+  // const all= await Promise.all([getProductById(productId), wooProductVariations(productId)])
+  // console.log('all90000', all)
+  
+  // LOOK
+  // const XX = async () => {
+  //   console.log('VVV--', `products/${productId}/variations/${secondParams}`);
+  //   const res = await wooCommerce.get(
+  //     `products/${productId}/variations/${secondParams}`
+  //   );
+  //   // console.log('RES', res);
+  //   // console.log(res.data)
+  // };
+  // XX();
+  
+  
 
-  const XX = async () => {
-    console.log('VVV--', `products/${productId}/variations/${secondParams}`);
-    const res = await wooCommerce.get(
-      `products/${productId}/variations/${secondParams}`
-    );
-    // console.log('RES', res);
-    console.log(res.data)
-  };
-  XX();
-  console.log('params ', params);
   const attributes = product
     ? product.attributes.map((attribute) => {
         // attribute could either be color or subscription
@@ -78,6 +83,9 @@ const ProductDetailPage = async (props) => {
   // console.log('paramsBB', params); // paramsBB { productID: [ 'microsoft-xbox-series-x-11601' ] }
   // console.log('productVariationsBBB',productVariations)
   // console.log('product default_attributes',product. default_attributes)
+  
+  console.log('productBBB',product)
+  console.log('product.attributes9000',product.attributes)
   return (
     <div>
       {product ? (
@@ -90,6 +98,8 @@ const ProductDetailPage = async (props) => {
               image: product.images[0].src,
               price: product.price,
               attributes: attributes,
+              slug:product.  slug,
+              default_attributes: product. default_attributes
             }}
             productVariations={productVariations}
           />

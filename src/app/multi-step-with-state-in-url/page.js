@@ -26,11 +26,11 @@ const MultiFormPage = () => {
   const [counterStep, setCounterStep] = useState(parsedStep);
   const [formData, setFormDate] = useState({
     email: '',
-    accountType:'',
-    fullname:'',
-    password:''
+    accountType: '',
+    fullname: '',
+    password: '',
   });
-  const handleFormData = (e) => {  
+  const handleFormData = (e) => {
     setFormDate((oldState) => {
       return {
         ...oldState,
@@ -47,7 +47,7 @@ const MultiFormPage = () => {
       });
     }
   };
-  console.log('formData',formData)
+  console.log('formData', formData);
   useEffect(() => {
     router.push(`?step=${counterStep}`);
   }, [counterStep]);
@@ -63,6 +63,17 @@ const MultiFormPage = () => {
   const handleStep = (nextLevel) => {
     router.push(`?step=${nextLevel}`);
   };
+  const sendFormData = async () => {
+    const res = await fetch('/api/signup', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: formData.email,
+        password: formData.password,
+      }),
+    });
+    const data = await res.json();
+    console.log('data', data);
+  };
 
   switch (parsedStep) {
     case 1:
@@ -74,7 +85,21 @@ const MultiFormPage = () => {
           <div>
             <label>
               email
-              <input type="text" value={formData.email}  name="email" onChange={handleFormData} />
+              <input
+                type="text"
+                value={formData.email}
+                name="email"
+                onChange={handleFormData}
+              />
+            </label>
+            <label>
+              password
+              <input
+                type="text"
+                value={formData.password}
+                name="password"
+                onChange={handleFormData}
+              />
             </label>
           </div>
           <div>
@@ -82,7 +107,9 @@ const MultiFormPage = () => {
               type="button"
               onClick={() => {
                 // handleStep(2);
-                handleNextStep();
+                console.log('formData', formData);
+                sendFormData();
+                // handleNextStep();
               }}
             >
               Next
@@ -102,12 +129,24 @@ const MultiFormPage = () => {
           <h3>Who are you ?</h3>
           <div>
             <label>
-              Recruiter <input type="radio" onChange={handleFormData}  value='recruiter' name="accountType" />
+              Recruiter{' '}
+              <input
+                type="radio"
+                onChange={handleFormData}
+                value="recruiter"
+                name="accountType"
+              />
             </label>
           </div>
           <div>
             <label>
-              Employee <input type="radio" onChange={handleFormData} value='employee'  name="accountType" />
+              Employee{' '}
+              <input
+                type="radio"
+                onChange={handleFormData}
+                value="employee"
+                name="accountType"
+              />
             </label>
           </div>
           <div>
@@ -140,13 +179,25 @@ const MultiFormPage = () => {
           <div>
             <label>
               fullname
-              <input type="text" value={formData.fullname} name="fullname" onChange={handleFormData} placeholder="Enter you full name" />
+              <input
+                type="text"
+                value={formData.fullname}
+                name="fullname"
+                onChange={handleFormData}
+                placeholder="Enter you full name"
+              />
             </label>
           </div>
           <div>
             <label>
               password
-              <input type="text" name="password" value={formData.password} onChange={handleFormData}  placeholder="Enter password" />
+              <input
+                type="text"
+                name="password"
+                value={formData.password}
+                onChange={handleFormData}
+                placeholder="Enter password"
+              />
             </label>
           </div>
           <div>

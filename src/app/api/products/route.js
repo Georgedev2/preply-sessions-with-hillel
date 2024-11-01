@@ -7,3 +7,5 @@ export const GET = () => {
     data: products,
   });
 };
+
+// http://localhost:3000/api/products

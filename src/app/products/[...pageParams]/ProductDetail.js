@@ -1,9 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
-// import wooCommerce from '../../components/utils/wooCommerceUtils';
-// import wooCommerce from '../../components/utils/wooCommerceUtils'
+import React, { useState } from 'react';
 
 const ProductDetail = ({ product_, productVariations }) => {
   const [product, setProduct] = useState(product_);
@@ -15,10 +13,8 @@ const ProductDetail = ({ product_, productVariations }) => {
     arr.splice(3, Infinity, re);
     return arr.join('/');
   };
-  // console.log('product',product)
-  // useEffect(()=>{
-  //   // wooCommerce.get(`products/${productId}/variations`);
-  // },[product. productVariationID])
+
+  console.log('productVariations', productVariations);
   return (
     <div>
       <Image src={product.image} alt="" width={200} height={100} />
@@ -62,18 +58,19 @@ const ProductDetail = ({ product_, productVariations }) => {
                 productVariations.map((productVariation) => {
                   productVariation.attributes.find((attribute) => {
                     if (item.toLowerCase() === attribute.option.toLowerCase()) {
+                      const url = addProductVariationIdToURL(
+                        `${pathname}/${productVariation.id}`,
+                        productVariation.id
+                      );
+                      console.log(' url', url);
+                      router.push(url);
+
                       setProduct((prevProduct) => ({
                         ...prevProduct,
                         image: productVariation.image,
                         productVariationID: productVariation.id,
                       }));
-                      console.log('productVariation',productVariation)
-                      router.push(
-                        addProductVariationIdToURL(
-                          `${pathname}/${productVariation.id}`,
-                          productVariation.id
-                        )
-                      );
+                      // console.log('productVariation', productVariation);
                     }
                   });
                 });
@@ -90,9 +87,6 @@ const ProductDetail = ({ product_, productVariations }) => {
 };
 
 export default ProductDetail;
-
-
-
 
 // const obj = [
 //   {
@@ -203,3 +197,31 @@ export default ProductDetail;
 //     }
 //     return '';
 //   };
+
+// const x = {};
+// obj.map((el) => {
+//   const x=Object.entries(el)
+//   let j = {};
+//   x.map(([key,value])=>{
+//     j[key]={
+      
+//     }
+//   })
+  // if (el === 'attributes') {
+    // j.[el]
+    // return {
+    //   el,
+    //   attributes: {
+    //     subscriptionTerm: {
+    //       option: {},
+    //     },
+    //   },
+    // };
+  // }
+  // return j;
+// });
+// x[el.id] = {
+//   price: el.price,
+//   attributes: el.attributes,
+//   parent_id: el.parent_id,
+// };
