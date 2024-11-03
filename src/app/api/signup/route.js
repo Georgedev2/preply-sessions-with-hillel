@@ -2,20 +2,11 @@ import { NextResponse } from 'next/server';
 import { connectToDB } from '../dbConfig';
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
+import User from '../model/UserModel';
 
-const { Schema } = mongoose;
-connectToDB();
-
-const userSchema = new Schema({
-  email: String, // String is shorthand for {type: String}
-  password: String,
-  createOn: { type: Date, default: Date.now() },
-  isEmailVerify: Boolean,
-});
-const User = mongoose.models.user || mongoose.model('user', userSchema);
 
 export const POST = async (req, res) => {
-    console.log('mongoose.model',mongoose.models)// mongoose.model { user: Model { user },post:Model {post} }
+  console.log('mongoose.model', mongoose.models); // mongoose.model { user: Model { user },post:Model {post} }
   try {
     const data = await req.json();
     const { username, password } = data || {};
