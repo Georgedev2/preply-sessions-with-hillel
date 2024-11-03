@@ -1,0 +1,19 @@
+POST http://localhost:3000/api/signup 
+content-type: application/json
+
+{
+    "username": "sam@gmail.com",
+    "password": "17338"
+}
+###
+POST http://localhost:3000/api/login 
+content-type: application/json
+
+{
+    "username": "sam@gmail.com",
+    "password": "17338"
+}
+
+//dc5069b5-22ac-48c6-af2f-7591f4832745
+
+//dc5069b5-22ac-48c6-af2f-7591f4832745
